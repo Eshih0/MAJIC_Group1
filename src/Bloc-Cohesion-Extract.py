@@ -2,7 +2,7 @@
 Royalist-Military Bloc Cohesion: Data Extraction
 Sources: iLaw / TLHR (lese majeste prosecutions), Bangkok Post / Wikipedia (Constitutional Court rulings)
 
-Saves to: ../data/training/bloc_cohesion.csv
+Saves to: ../data/training/S3-bloc_cohesion.csv
 
 Logic:
 - High lese majeste prosecution rate = establishment actively enforcing political control = High cohesion
@@ -156,7 +156,7 @@ def main():
     # Save
     out_dir = "../data/training"
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "bloc_cohesion.csv")
+    out_path = os.path.join(out_dir, "S3-bloc_cohesion.csv")
     output.to_csv(out_path, index=False)
     print(f"\nSaved to {out_path}")
 
