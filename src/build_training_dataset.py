@@ -7,7 +7,7 @@ import numpy as np
 # ============================================================
 
 ACLED_CSV_PATH = "acled_export.csv"
-OUTPUT_CSV_PATH = "pgmpy_training_dataset.csv"
+OUTPUT_CSV_PATH = "acled_training_dataset.csv"
 
 # Choose time frequency:
 # "W" = weekly
