@@ -1,155 +1,362 @@
-# Thailand-Cambodia Border Conflict Prediction Model
+# Thailand–Cambodia Border Conflict Risk Model
 
-A Bayesian Network model that predicts the probability of border military action between Thailand and Cambodia across four geographic zones, using political, institutional, economic, and geospatial data.
+<p align="center">
+  <img src="outputs/conflict_risk_demo.gif" width="900">
+</p>
 
 ## Overview
 
-The model is built around a central empirical finding: **Thai civilian government weakness is the dominant leading indicator of conflict.** Every major escalation since 2008 has occurred during periods of political fragility or transition. All other variables function as inputs into that weakness assessment or as conditional multipliers.
+This project develops a probabilistic forecasting system for military escalation risk along the Thailand–Cambodia border. The model integrates political, institutional, economic, and geospatial indicators to estimate the probability of border conflict within a six-month window.
 
-The border is divided into four prediction zones:
+Using a Bayesian Network architecture, the system models how domestic political instability, bilateral tensions, and regional conditions interact to increase or decrease the likelihood of military confrontation.
 
-- **Zone 1** (Northeast Dangrek): Preah Vihear Temple, Emerald Triangle, Phu Makhua Hill, Nam Yuen District
-- **Zone 2** (Western Dangrek): Prasat Ta Muen Thom, Ta Krabey, Ta Khwai, O'Smach
-- **Zone 3** (Central Border): Poipet/Sa Kaeo, Serei Saophoan, Prey Chan Village
-- **Zone 4** (Southeast Coast/Maritime): Ban Chamrak/Trat, Thma Da/Pursat, Khlong Yai, Ko Kut
+The goal is to produce zone-level risk forecasts that help identify:
 
-Each zone has its own model with zone-specific conflict outcome coding, seasonal multipliers, and scam economy weights, while sharing national-level political inputs.
+- Potential escalation hotspots
+- Underlying political triggers
+- Spatial patterns of risk along the border
+
+This work is designed for research and analytical purposes in political risk, international security, and computational social science.
+
+---
+
+## Key Idea
+
+The model is built around an empirical observation:
+
+Major Thailand–Cambodia border escalations since 2008 tend to occur during periods of Thai civilian government weakness or political transition.
+
+Political fragility acts as a central driver, while other variables serve as triggers or amplifiers that influence escalation dynamics.
+
+---
+
+## Geographic Prediction Zones
+
+The border is divided into four operational zones, each with its own conflict history and contextual factors.
+
+### Zone 1 — Northeast Dangrek
+
+Key locations:
+
+- Preah Vihear Temple
+- Emerald Triangle
+- Phu Makhua Hill
+- Nam Yuen District
+
+Characteristics:
+
+- Mountainous terrain
+- Strong dry-season effects
+- Historical conflict hotspot
+
+### Zone 2 — Western Dangrek
+
+Key locations:
+
+- Prasat Ta Muen Thom
+- Ta Krabey
+- Ta Khwai
+- O'Smach
+
+Characteristics:
+
+- Highland terrain
+- Significant cross-border criminal networks
+- Frequent historical military tensions
+
+### Zone 3 — Central Border
+
+Key locations:
+
+- Poipet / Sa Kaeo
+- Serei Saophoan
+- Prey Chan Village
+
+Characteristics:
+
+- Flat terrain
+- Major commercial border crossing
+- Strong influence from the regional scam economy
+
+### Zone 4 — Southeast Coast / Maritime
+
+Key locations:
+
+- Ban Chamrak / Trat
+- Thma Da / Pursat
+- Khlong Yai
+- Ko Kut
+
+Characteristics:
+
+- Maritime and coastal environment
+- Naval and ground interaction dynamics
+- Lower historical conflict frequency
+
+---
 
 ## Model Architecture
 
-The network is structured in three layers:
+The Bayesian Network is structured into three conceptual layers.
 
-**Structural Layer** (annual updates): Military Autonomy, Civilian Government Legitimacy, Royalist-Military Bloc Cohesion, Economic Stress
+### 1. Structural Layer (Long-Term Conditions)
 
-**Trigger Layer** (weekly/event-driven updates): Government Survival Probability, Constitutional Court Activity, Military-Civilian Friction Events, Nationalist Sentiment, Cambodia Provocation Signal, Bilateral Channel Health
+Updated annually and representing baseline political conditions.
 
-**Output**: P(Border Military Action Within 6 Months) per zone
+Variables include:
 
-A central **Government Weakness** variable (Stable / Fragile / Collapsed-Caretaker) sits between the structural and trigger layers and the output. Calibrated against 34 historical six-month windows since 2008 with an 18% base rate.
+- Military Autonomy
+- Civilian Government Legitimacy
+- Royalist–Military Bloc Cohesion
+- Economic Stress
+
+These variables determine the stability of the political system.
+
+---
+
+### 2. Trigger Layer (Short-Term Signals)
+
+Updated weekly or event-driven.
+
+Examples:
+
+- Government survival probability
+- Constitutional Court activity
+- Military–civilian friction events
+- Nationalist sentiment
+- Cambodian provocation indicators
+- Bilateral diplomatic channel health
+
+These factors influence whether escalation pressures increase.
+
+---
+
+### 3. Output Layer
+
+The model produces:
+
+**P(Border Military Action within 6 Months)**
+
+This probability is calculated for each geographic zone.
+
+A central latent variable called **Government Weakness (Stable / Fragile / Collapsed)** mediates the relationship between structural factors and trigger events.
+
+---
 
 ## Data Sources
 
-### Thailand (Structural)
-| Variable | Source | URL |
-|----------|--------|-----|
-| Military Autonomy | V-Dem Dataset | v-dem.net |
-| Government Legitimacy | NIDA Poll, IPU Parline | nidapoll.nida.ac.th/en, data.ipu.org |
-| Bloc Cohesion | iLaw (lese majeste data), Bangkok Post (court rulings) | ilaw.or.th/en, bangkokpost.com |
-| Economic Stress | Bank of Thailand, FRED | bot.or.th/en/statistics.html, fred.stlouisfed.org |
+### Thailand Structural Indicators
 
-### Cambodia (Provocation Baseline)
-| Variable | Source | URL |
-|----------|--------|-----|
-| Regime Consolidation | V-Dem Dataset | v-dem.net |
-| Violence Capacity | V-Dem Dataset | v-dem.net |
-| Corruption Environment | V-Dem Dataset | v-dem.net |
+| Variable | Source |
+|---|---|
+| Military Autonomy | V-Dem Dataset |
+| Government Legitimacy | NIDA Poll, IPU Parline |
+| Royalist–Military Bloc Cohesion | iLaw dataset, court rulings |
+| Economic Stress | Bank of Thailand, FRED |
 
-### Trigger Layer
-| Variable | Source | URL |
-|----------|--------|-----|
-| Conflict Events | ACLED | acleddata.com |
-| Court Activity | Constitutional Court of Thailand, Prachatai | constitutionalcourt.or.th, prachatai.com/english |
-| Nationalist Sentiment | X/Twitter API, Bangkok Post | bangkokpost.com/opinion |
-| Cambodia Provocation | Sentinel-2 imagery, Hun Sen Facebook, ICJ tracker | browser.dataspace.copernicus.eu, icj-cij.org/cases |
-| Bilateral Channels | Thai MFA, Cambodian MFA, Khmer Times | mfa.go.th/en, mfaic.gov.kh, khmertimeskh.com |
-| Scam Economy | OFAC Sanctions, US TIP Report, UNODC | sanctionssearch.ofac.treas.gov, unodc.org |
+### Cambodia Baseline Indicators
+
+| Variable | Source |
+|---|---|
+| Regime Consolidation | V-Dem Dataset |
+| Violence Capacity | V-Dem Dataset |
+| Corruption Environment | V-Dem Dataset |
+
+### Trigger Layer Signals
+
+| Variable | Source |
+|---|---|
+| Conflict Events | ACLED |
+| Court Activity | Thai Constitutional Court |
+| Nationalist Sentiment | Twitter / news media |
+| Cambodian Provocation | Sentinel-2 satellite imagery |
+| Bilateral Channels | Thai MFA / Cambodian MFA |
+| Scam Economy Indicators | OFAC sanctions, UNODC |
+
+---
 
 ## Installation
 
 ### Requirements
+
 - Python 3.9+
 - pgmpy
 - pandas
 - numpy
 
-### Setup
+### Clone the Repository
 
 ```bash
 git clone https://github.com/Eshih0/MAJIC_Group1.git
 cd MAJIC_Group1
+```
 
-# Create virtual environment
+### Create Virtual Environment
+
+```bash
 python -m venv venv
 source venv/bin/activate
+```
 
-# Install dependencies
+### Install Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-### Data Setup
+---
 
-1. Download V-Dem Country-Year dataset from [v-dem.net](https://v-dem.net/data/the-v-dem-dataset/) (select "Country-Year: V-Dem Full+Others")
-2. Save the CSV to `data/`
-3. Note: The V-Dem CSV is too large for GitHub. It is listed in `.gitignore`.
+## Data Setup
+
+The V-Dem dataset is too large to include directly in the repository.
+
+1. Download the **Country-Year V-Dem dataset**
+2. Select:
+
+```
+Country-Year: V-Dem Full + Others
+```
+
+3. Place the file in:
+
+```
+data/V-Dem-CY-Full+Others-v15.csv
+```
+
+---
 
 ## Usage
 
 ### 1. Extract and Discretize V-Dem Data
+
 ```bash
 cd src
 python vdem_extract.py
 ```
-Outputs `thailand_values.csv` and `cambodia_values.csv` with raw scores and discretized High/Medium/Low states.
 
-### 2. Extract Bloc Cohesion Data
+Outputs:
+
+```
+thailand_values.csv
+cambodia_values.csv
+```
+
+These contain both raw scores and discretized states.
+
+---
+
+### 2. Generate Bloc Cohesion Data
+
 ```bash
 python bloc_cohesion_extract.py
 ```
-Outputs `data/training/bloc_cohesion.csv` with lese majeste prosecution counts, Constitutional Court ruling direction, and discretized Bloc_Cohesion states.
 
-### 3. Build and Query the Bayesian Network
+Output:
+
+```
+data/training/bloc_cohesion.csv
+```
+
+This dataset includes:
+
+- Lèse-majesté prosecution counts
+- Constitutional court rulings
+- Bloc cohesion state classifications
+
+---
+
+### 3. Train and Query the Bayesian Network
+
+Example workflow:
+
 ```python
 from pgmpy.models import BayesianNetwork
 from pgmpy.estimators import BayesianEstimator
 from pgmpy.inference import VariableElimination
-
-# Load training data, define network structure, fit CPTs
-# See src/ scripts for full implementation
 ```
 
-## Directory Structure
+The full implementation of model construction and inference is available in the `src/` scripts.
+
+---
+
+## Project Structure
 
 ```
 MAJIC_Group1/
-  data/
-    training/              # Discretized training CSVs
-      bloc_cohesion.csv
-    V-Dem-CY-Full+Others-v15.csv  # (gitignored, download manually)
-  src/
-    vdem_extract.py        # V-Dem data extraction for Thailand + Cambodia
-    bloc_cohesion_extract.py  # Bloc cohesion from iLaw + court rulings
-  docs/
-    Thailand_Cambodia_BN_Node_Reference.docx  # Full node definitions and causal logic
-    Source_Zone_Assignment_Matrix.docx         # Source-to-zone mapping
-  notebooks/               # Jupyter notebooks for exploration
-  .gitignore
-  README.md
-  requirements.txt
+
+├── data/
+│   ├── training/
+│   │   └── bloc_cohesion.csv
+│   └── V-Dem-CY-Full+Others-v15.csv
+│
+├── src/
+│   ├── vdem_extract.py
+│   └── bloc_cohesion_extract.py
+│
+├── docs/
+│   ├── Thailand_Cambodia_BN_Node_Reference.docx
+│   └── Source_Zone_Assignment_Matrix.docx
+│
+├── notebooks/
+│
+├── outputs/
+│   └── conflict_risk_demo.gif
+│
+├── run_conflict_bn.py
+├── requirements.txt
+└── README.md
 ```
 
-## Zone-Specific Considerations
+---
 
-| Factor | Zone 1 | Zone 2 | Zone 3 | Zone 4 |
-|--------|--------|--------|--------|--------|
-| Terrain | Highland/mountain | Highland/mountain | Lowland/plains | Coastal/maritime |
-| Dry season effect | Strong | Strong | Moderate | Complex (ground vs naval) |
-| Scam compounds | None | High (O'Smach) | Highest (Poipet) | High (Koh Kong) |
-| ICJ relevance | Yes | Yes | No | No |
-| Military command | 2nd Army Region | 2nd Army Region | 2nd Army Region | Chanthaburi-Trat Command + RTN |
-| Historical base rate | High (conflict in 2008-2011, 2025) | High (conflict in 2008-2011, 2025) | Low (conflict only in 2025) | Low (conflict only in 2025) |
+## Model Calibration
 
-## Calibration
+Training period:
 
-- **Training window**: January 2008 to June 2026 (34 six-month windows)
-- **Positive windows**: 5 (Oct 2008-Mar 2009, Oct 2010-Mar 2011, Apr-Sep 2011, Feb-Jul 2025, Oct 2025-Mar 2026)
-- **Base rate**: ~18%
-- **Estimator**: BayesianEstimator with Dirichlet priors (appropriate for small N)
-- **Validation**: Leave-one-out cross-validation, Brier score target < 0.12
+```
+January 2008 – June 2026
+```
 
+Training windows:
+
+```
+34 six-month periods
+```
+
+Positive conflict windows:
+
+- Oct 2008 – Mar 2009
+- Oct 2010 – Mar 2011
+- Apr 2011 – Sep 2011
+- Feb 2025 – Jul 2025
+- Oct 2025 – Mar 2026
+
+Base conflict rate:
+
+```
+~18%
+```
+
+Estimator used:
+
+```
+BayesianEstimator with Dirichlet priors
+```
+
+Validation approach:
+
+```
+Leave-one-out cross validation
+Target Brier score < 0.12
+```
+
+---
 
 ## Team
 
 MAJIC Group 1
+
+---
 
 ## License
 
@@ -157,4 +364,6 @@ MIT License
 
 ---
 
-**Disclaimer**: This model is for academic and research purposes. Border security assessments should incorporate multiple data sources and expert validation.
+## Disclaimer
+
+This model is intended for academic and research purposes only. Forecasts of geopolitical conflict involve uncertainty and should be supplemented with expert analysis, multiple data sources, and contextual intelligence.
