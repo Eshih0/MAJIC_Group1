@@ -23,9 +23,35 @@ FUTURE_STEPS = 1
 # Simple zone definitions using bounding boxes
 # Replace these with your real border zones
 ZONE_DEFS = {
-    "Zone_North":   {"lat_min": 20.0, "lat_max": 21.5, "lon_min": 98.5, "lon_max": 100.5},
-    "Zone_Central": {"lat_min": 18.5, "lat_max": 20.0, "lon_min": 97.5, "lon_max": 99.5},
-    "Zone_South":   {"lat_min": 16.5, "lat_max": 18.5, "lon_min": 97.0, "lon_max": 99.0},
+
+    "Zone_1": {   # top-right (north)
+        "lat_min": 14.6,
+        "lat_max": 15.5,
+        "lon_min": 104.0,
+        "lon_max": 105.5
+    },
+
+    "Zone_2": {
+        "lat_min": 14.0,
+        "lat_max": 14.6,
+        "lon_min": 104.0,
+        "lon_max": 105.5
+    },
+
+    "Zone_3": {
+        "lat_min": 13.3,
+        "lat_max": 14.0,
+        "lon_min": 104.0,
+        "lon_max": 105.5
+    },
+
+    "Zone_4": {   # bottom-right (south)
+        "lat_min": 12.4,
+        "lat_max": 13.3,
+        "lon_min": 104.0,
+        "lon_max": 105.5
+    }
+
 }
 
 
