@@ -1,0 +1,41 @@
+Year,Month,PM,Coalition_Seats,Margin,No_Confidence_Filed,Coalition_Defection,Notes,Gov_Survival
+2008,1,Samak Sundaravej,315,64,0,0,PPP-led coalition formed after Dec 2007 election.,High
+2008,6,Samak Sundaravej,315,64,1,0,Opposition filed no-confidence motion in late June. Government survived.,Medium
+2008,9,Samak Sundaravej,315,64,0,0,Samak removed by court Sep 9 (cooking show). NOT a no-confidence event.,High
+2008,10,Somchai Wongsawat,310,59,0,0,Somchai took over from Samak. PAD airport seizures Nov.,High
+2008,12,Somchai Wongsawat,0,-251,0,1,PPP dissolved by court Dec 2. Coalition collapsed. Mass defection to form Abhisit govt.,Low
+2009,3,Abhisit Vejjajiva,262,11,1,0,First no-confidence motion filed by Puea Thai. Abhisit survived by ~53 votes.,Low
+2009,6,Abhisit Vejjajiva,262,11,0,0,Stable period. Red Shirt protests in Apr dispersed.,Medium
+2010,3,Abhisit Vejjajiva,260,9,0,0,Red Shirt protests escalating but no parliamentary threat.,Medium
+2010,6,Abhisit Vejjajiva,260,9,1,0,No-confidence debate. Survived. Post-crackdown period.,Low
+2011,3,Abhisit Vejjajiva,258,7,1,0,Third no-confidence motion. Survived. Margin thin.,Low
+2011,5,Abhisit Vejjajiva,258,7,0,0,House dissolved May 10. Election called for July.,Medium
+2011,8,Yingluck Shinawatra,300,49,0,0,Pheu Thai won landslide. 6-party coalition. Strong majority.,High
+2012,6,Yingluck Shinawatra,300,49,0,0,Stable. No significant threats.,High
+2012,11,Yingluck Shinawatra,300,49,1,0,No-confidence debate Nov 26-28. Yingluck survived easily with 3/5 majority.,Medium
+2013,6,Yingluck Shinawatra,295,44,0,0,Stable. Rice pledging scheme controversy building.,High
+2013,11,Yingluck Shinawatra,295,44,1,0,No-confidence filed over amnesty bill. Anti-govt protests began. Yingluck survived vote.,Medium
+2013,12,Yingluck Shinawatra,295,44,0,0,House dissolved Dec 9. Caretaker government.,High
+2014,3,Yingluck Shinawatra (caretaker),0,0,0,0,"Caretaker. Feb election boycotted, annulled by court.",Medium
+2014,6,Prayuth Chan-o-cha (junta),0,0,0,0,Military junta. No parliament. N/A for survival probability.,N/A
+2016,6,Prayuth Chan-o-cha (junta),0,0,0,0,Military junta. No parliament.,N/A
+2018,6,Prayuth Chan-o-cha (junta),0,0,0,0,Military junta. Pre-election.,N/A
+2019,7,Prayuth Chan-o-cha,254,3,0,0,Elected PM via Senate vote. Razor-thin margin in House.,Medium
+2020,2,Prayuth Chan-o-cha,254,3,1,0,No-confidence debate Feb. Prayuth survived. FFP dissolved same month.,Low
+2020,9,Prayuth Chan-o-cha,270,19,0,0,Gained seats from FFP dissolution fallout. Protests building.,Medium
+2021,2,Prayuth Chan-o-cha,268,17,1,0,No-confidence motion Feb. Survived.,Low
+2021,9,Prayuth Chan-o-cha,265,14,1,0,Another no-confidence. Survived but margin eroding.,Low
+2022,7,Prayuth Chan-o-cha,260,9,1,0,No-confidence debate Jul 18-22. Survived. Last censure before term expiry.,Low
+2022,8,Prayuth Chan-o-cha,260,9,0,0,Suspended by court Aug (term limit). Returned Sep after favorable ruling.,Medium
+2023,8,Srettha Thavisin,314,63,0,0,11-party coalition formed. Large majority. MFP in opposition.,High
+2024,3,Srettha Thavisin,310,59,0,0,Stable. Some minor coalition friction but no defections.,High
+2024,6,Srettha Thavisin,310,59,0,0,Approval declining (12.85%) but coalition holding.,High
+2024,9,Paetongtarn Shinawatra,305,54,0,0,Took over from Srettha. MFP dissolved Aug 7. Coalition held.,High
+2024,12,Paetongtarn Shinawatra,300,49,0,0,Thamanat faction (19 MPs) expelled from PPRP Dec. Coalition gradually shifting.,High
+2025,3,Paetongtarn Shinawatra,292,41,1,0,People's Party filed no-confidence motion Mar. Paetongtarn survived vote Mar 26.,Medium
+2025,5,Paetongtarn Shinawatra,292,41,0,0,Border skirmish May 28. Tensions rising with Bhumjaithai over Interior Ministry.,High
+2025,6,Paetongtarn Shinawatra,223,-28,1,1,Hun Sen phone call leaked Jun 18. Bhumjaithai (69 seats) withdrew Jun 19. No-confidence announced Jun 24. Coalition lost majority.,Low
+2025,7,Paetongtarn Shinawatra (suspended),254,3,1,1,Paetongtarn suspended by court Jul 1. Remaining 6 parties held at ~254 seats. Caretaker Phumtham.,Low
+2025,8,Paetongtarn Shinawatra (removed),0,0,0,1,Paetongtarn removed Aug 29. Government collapsed. People's Party backed Anutin.,Low
+2025,9,Anutin Charnvirakul,195,-56,0,0,Minority govt. People's Party confidence and supply. Required to dissolve House within 4 months.,Low
+2025,12,Anutin Charnvirakul,195,-56,0,0,House dissolved Dec 12. Caretaker PM. Election Feb 8 2026.,Low
