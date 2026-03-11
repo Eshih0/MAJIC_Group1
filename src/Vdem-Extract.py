@@ -10,8 +10,8 @@ SETUP:
 3. Run: python3 vdem_extract.py
 
 OUTPUT:
-- thailand_values.csv  (raw scores + discretized states)
-- cambodia_values.csv  (raw scores + discretized states)
+- Vdem-thailand_values.csv  (raw scores + discretized states)
+- Vdem-cambodia_values.csv  (raw scores + discretized states)
 """
 
 import pandas as pd
@@ -244,11 +244,11 @@ def main():
     print(camb_out.to_string(index=False))
 
     # Save
-    thai_out.to_csv("../data/training/thailand_values.csv", index=False)
-    camb_out.to_csv("../data/training/cambodia_values.csv", index=False)
+    thai_out.to_csv("../data/training/Vdem-thailand_values.csv", index=False)
+    camb_out.to_csv("../data/training/Vdem-Vdem-cambodia_values.csv", index=False)
 
-    print(f"\nSaved thailand_values.csv")
-    print(f"Saved cambodia_values.csv")
+    print(f"\nSaved Vdem-thailand_values.csv")
+    print(f"Saved Vdem-cambodia_values.csv")
 
 
 if __name__ == "__main__":
