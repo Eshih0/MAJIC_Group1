@@ -1,8 +1,6 @@
 # Thailand–Cambodia Border Conflict Risk Model
 
-<p align="center">
-  <img src="outputs/conflict_risk_demo.gif" width="900">
-</p>
+![GIF of timeline](output/conflict_risk_animation.gif)
 
 ## Overview
 
