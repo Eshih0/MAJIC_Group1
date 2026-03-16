@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{titlesec}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{parskip}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+
+\setstretch{1.15}
+
+\begin{document}
+
+% Title block
+\begin{center}
+    {\Large \textbf{Bayesian Networks to Predict Conflict Along the Thailand--Cambodia Border}} \\[1em]
+    {\large Rutgers Team 1} \\[0.5em]
+    Gavin Fair, Tyler Matsumoto, Rameen Pazhmon, Kinza Rizvi, Edward Shih \\[0.3em]
+    Rutgers, The State University of New Jersey \\[0.3em]
+    Challenge Track 1
+\end{center}
+
+\vspace{1em}
+
+\section*{Abstract}
+
+Our team utilized a Bayesian Network to predict the probability of kinetic military action along the Thailand--Cambodia border. To provide a model relevant to stakeholders at the National Geospatial Agency (NGA), we included seemingly invisible social, political, and economic causes of war that can be tangibly observed through geospatial data. We designed a Bayesian Network to estimate a single probability for each of the four geographic zones of historical conflict and for six-month time frames spanning from the first conflict identified to the present.
+
+\section*{Background}
+
+The modern conflict between Thailand and recently independent Cambodia began in 1954, stemming from a border dispute over Preah Vihear, an ancient Hindu \& Buddhist temple. To clarify French colonial-era maps, the International Court of Justice (ICJ) ruled in favor of Cambodia in 1962 and ordered Thailand to withdraw troops. As with holy sites around the globe, the issue remained disputed and unresolved. Politically, while Cambodia has remained under the unofficial control of former Prime Minister Hun Sen, the elected government of Thailand endures frequent interference and occasionally military takeover. Therefore, we conclude that border disputes with Cambodia are used to stoke nationalist sentiment in periods of weakness of the elected Thai government. Thai efforts to weaken the Cambodian scam industry remain a major driver of economic instability within the region. There were frequent hostile border skirmishes from 2008 to 2011. Both countries were ordered to withdraw troops, which led to a period of cooperation that lasted until mid-2025. The relationship between Thailand and Cambodia deteriorated as both countries deployed troops and officially broke their ceasefire.
+
+\section*{Methods}
+
+\subsection*{Model Architecture}
+
+An analysis of the recent history conflict between both countries led us to create a multi-layered Bayesian Network architecture to account for both event-driven variables, including court decisions, and yearly metrics, such as economic health and government stability.
+
+The first structural layer represents slow-moving political and economic variables that develop over months to years. These variables represent institutional dynamics that measure government volatility, such as economic stress and political legitimacy. Specifically, we aimed to quantify political support for the elected government of Thailand, economic stress in both countries, and court rulings that support or weaken the government of Thailand.
+
+The second layer of our model shifts to higher-frequency and event-driven variables, including Government Survival Probability, Constitutional Court Activity, Military--Civilian Friction Events, Nationalist Sentiment, Cambodia Provocation Signal, and Bilateral Channel Health. These variables capture escalating political tension as updates to discrete political events that often rapidly alter the political environment in the region.
+
+In this model, we also included a binary wet and dry season. In Southeast Asia, the unique climate alters military decision-making. Finally, we aggregate this data to represent the model's prediction target. This last node integrates variables from each layer into a unified probabilistic framework for escalation forecasting, smoothing noise into a singular quantifiable metric, divided both temporally and spatially.
+
+\subsection*{Technical Stack}
+
+The model runs on Python 3.9 or higher, using \texttt{pgmpy} for Bayesian inference alongside \texttt{pandas} and \texttt{numpy} for data handling. The primary dataset is the V-Dem Country-Year CSV, which must be downloaded manually from \url{v-dem.net} and placed in the \texttt{data/} directory, as the file is too large to host on GitHub. Two key scripts handle data preparation: \texttt{vdem\_extract.py} discretizes raw V-Dem data into High, Medium, and Low states, while \texttt{bloc\_cohesion\_extract.py} processes lese majeste prosecution counts and court ruling directions. The model uses a Bayesian estimator with Dirichlet priors and is validated through leave-one-out cross-validation.
+
+\subsection*{Geographic Zones}
+
+The model covers four border zones:
+
+\textbf{Zone 1: Northeast Dangrek.} This zone includes Preah Vihear Temple, the Emerald Triangle, Phu Makhua Hill, and Nam Yuen. This highland terrain experiences a strong dry-season effect and carries the highest historical base rate of conflict, with incidents recorded from 2008 to 2011 and again in 2025, along with ongoing ICJ relevance.
+
+\textbf{Zone 2: Western Dangrek.} This zone includes Prasat Ta Muen Thom, Ta Krabey, and O'Smach. It shares similar highland terrain and a high historical base rate, and is also ICJ-relevant, with notable scam compound presence in the area.
+
+\textbf{Zone 3: Central Border.} This zone covers the area around Poipet/Sa Kaeo and Serei Saophoan. This lowland corridor has the highest concentration of scam compounds and a lower historical base rate, with conflict recorded only in 2025.
+
+\textbf{Zone 4: Southeast Coast and Maritime.} This zone covers the area around Ban Chamrak/Trat and Ko Kut. This coastal zone has a more complex dry-season dynamic and falls under dual jurisdiction of the Chanthaburi--Trat Command and the Royal Thai Navy, with a lower historical base rate overall.
+
+\section*{Discussion}
+
+Our Bayesian Network model, trained on 13 data sources from 2008 to 2025, confirms a pattern that the historical record suggests: weakness in the Thai civilian government is the strongest predictor of border conflict with Cambodia. When the government remains stable and trigger levels are low, the model assigns conflict probabilities below 12\% across all four geographic zones. However, during periods of Thai government collapse combined with elevated triggers during the dry season, the model estimates an 88\% probability of conflict for the Dangrek temple zones (Zones 1 and 2) and a 93\% probability for the southeastern coastal zone (Zone 4).
+
+The model achieved 91.7\% accuracy in Zones 1 and 2 and 100\% accuracy in Zones 3 and 4, with perfect precision across all zones. This means the model never falsely predicted conflict during a peaceful period. Every major escalation since 2008, including the Preah Vihear clashes and the 2025 border war, occurred when the Government Weakness variable was in its ``Collapsed'' or ``Fragile'' state. This political unrest was driven by some combination of Constitutional Court interventions, coalition defections, no-confidence motions, and military commanders acting independently of civilian authority.
+
+The model also reveals important geographic differentiation. Zones 1 and 2, the historic Dangrek Mountain temple corridor, carry a 13.9\% base rate of conflict and can be pushed into the danger zone by a fragile government alone (21.7\% conflict probability even with only moderate triggers). Zones 3 and 4, which only saw their first conflict during the 2025 escalation, have a much lower base rate of 5.6\% and require near-total government collapse combined with high trigger levels to produce significant risk. The seasonal multiplier further sharpens the picture for the highland zones, where dry season conditions enable the ground operations that monsoon rains make logistically impractical.
+
+\section*{Conclusion}
+
+Taken together, these findings suggest that monitoring Thai domestic political stability, particularly coalition seat margins, Constitutional Court petition activity, and military--civilian friction events, provides the most actionable early warning signal for border conflict risk. These indicators offer a practical framework for identifying periods when domestic political instability may escalate into international conflict. By integrating political indicators with geospatial monitoring, analysts can rapidly detect when local tensions may evolve into broader military confrontation.
+
+\section*{Suggestions for Future Study}
+
+Future research can expand this model by incorporating larger historical time series datasets to further strengthen probability estimates. Additional geospatial indicators, including higher-frequency satellite imagery and infrastructure activity near border regions, may also improve early detection of escalation. Future models may also benefit from advanced sentiment analysis techniques in order to capture shifts in nationalist expression within the media.
+
+\section*{References}
+
+Structural variables for Thailand draw from several institutional datasets. V-Dem provides regime and governance indicators, NIDA Poll captures domestic political support, IPU Parline tracks parliamentary dynamics, iLaw monitors court rulings and legal proceedings, and the Bank of Thailand and FRED supply economic stress indicators.
+
+Structural variables for Cambodia are sourced exclusively from V-Dem, covering regime consolidation, state capacity for violence, and the broader corruption environment.
+
+The trigger layer pulls from a wider set of event-driven sources. ACLED provides ground-level conflict event data, the Constitutional Court of Thailand supplies ruling direction and activity, and the X/Twitter API captures shifts in nationalist sentiment. Sentinel-2 satellite imagery supports spatial monitoring of border activity, while an ICJ tracker follows international legal developments relevant to the dispute. Diplomatic signals come from the Thai and Cambodian Ministries of Foreign Affairs, OFAC sanctions data informs bilateral channel health, and the UNODC Trafficking in Persons Report contributes to scam compound and illicit network indicators.
+
+\end{document}
